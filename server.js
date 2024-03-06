@@ -9,10 +9,10 @@ const server = http.createServer(app);
 const WS_PORT = 8888;
 const HTTP_PORT = process.env.PORT || 8000;
 
-const wsServer = new WebSocket.Server({ port: WS_PORT }, () => {
-  // const wsServer = new WebSocket.Server({ server }, () => {
-  console.log(`WS server running on port ${WS_PORT}`);
-  // console.log(`WS server running on port ${process.env.PORT}`);
+// const wsServer = new WebSocket.Server({ port: WS_PORT }, () => {
+const wsServer = new WebSocket.Server({ server }, () => {
+  // console.log(`WS server running on port ${WS_PORT}`);
+  console.log(`WS server running on port ${process.env.PORT}`);
 });
 
 let connectedClients = [];

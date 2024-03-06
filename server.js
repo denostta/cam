@@ -3,11 +3,16 @@ const express = require("express");
 const WebSocket = require("ws");
 const app = express();
 
-const WS_PORT = 8888;
-const HTTP_PORT = 8000;
+const http = require("http");
+const server = http.createServer(app);
 
-const wsServer = new WebSocket.Server({ port: WS_PORT }, () => {
-  console.log(`WS server running on port ${WS_PORT}`);
+//const WS_PORT = 8888;
+const HTTP_PORT = process.env.PORT || 8000;
+
+// const wsServer = new WebSocket.Server({ port: WS_PORT }, () => {
+const wsServer = new WebSocket.Server({ server }, () => {
+  //console.log(`WS server running on port ${WS_PORT}`);
+  console.log(`WS server running on port ${server}`);
 });
 
 let connectedClients = [];
@@ -29,6 +34,7 @@ wsServer.on("connection", (ws, req) => {
 app.get("/client", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client.html"));
 });
-app.listen(HTTP_PORT, (req, res) => {
+// app.listen(HTTP_PORT, (req, res) => {
+server.listen(HTTP_PORT, (req, res) => {
   console.log(`HTTP server listening at ${HTTP_PORT}`);
 });

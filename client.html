@@ -6,8 +6,8 @@
     <img src="" />
     <script>
       const img = document.querySelector("img");
-      const WS_URL = "ws://192.168.1.14:8888";
-      // const WS_URL = "net u r l:8888";
+      // const WS_URL = "ws://localhost:8888";
+      const WS_URL = "wss://cam-vbpk.onrender.com";
       const ws = new WebSocket(WS_URL);
       let urlObject;
       ws.onopen = () => {
